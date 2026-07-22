@@ -1,2 +1,1 @@
-# webnix-space-datahub-agent-crew
-Multi-agent crew that audits DataHub's metadata graph and writes fixes back — missing owners, stale docs, broken lineage — via the MCP Server.
+DataHub Agent Crew is a five-agent pipeline — Investigator, Analyst, Strategist, Regulatory, and Codeband — that reads an organization's DataHub metadata graph through the MCP Server, identifies gaps (unowned datasets, stale documentation, missing compliance tags, broken lineage), and writes corrected metadata directly back to DataHub. Built for the "Agents That Do Real Work" track: agents that take real action on real data infrastructure, not just chat about it.

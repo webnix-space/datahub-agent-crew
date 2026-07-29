@@ -12,11 +12,11 @@ from datetime import datetime
 logger = logging.getLogger(__name__)
 
 FIXED_AGENTS = [
-    "ShadowSignal Investigator",
-    "ShadowSignal Analyst",
-    "ShadowSignal Strategist",
-    "ShadowSignal Regulatory",
-    "ShadowSignal Codeband",
+    "DataHub Investigator",
+    "DataHub Analyst",
+    "DataHub Strategist",
+    "DataHub Regulatory",
+    "DataHub Codeband",
 ]
 
 
@@ -26,7 +26,7 @@ class LocalClient:
         self.my_id = agent_name.lower().replace(" ", "_")
         data_dir = os.getenv("DATA_DIR", "/tmp")
         os.makedirs(data_dir, exist_ok=True)
-        self.db_path = f"{data_dir}/shadowsignal_bus.db"
+        self.db_path = f"{data_dir}/datahub_agent_crew_bus.db"
         self._init_db()
 
     def _init_db(self):
@@ -52,7 +52,7 @@ class LocalClient:
         return {"id": self.my_id, "name": self.name}
 
     def get_chats(self) -> list:
-        return [{"id": "local-room", "name": "ShadowSignal Local Room"}]
+        return [{"id": "local-room", "name": "DataHub Agent Crew Local Room"}]
 
     def get_participants(self, chat_id: str) -> list:
         return [

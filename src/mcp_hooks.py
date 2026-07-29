@@ -28,29 +28,16 @@ def investigator_hook(agent_name: str, content: str) -> str:
     missing compliance tags, broken lineage) and hand a concrete list to
     the Analyst.
 
-    TODO before demo: confirm the real search/browse tool name by running
-    list_tools() against the live server once (already done manually for
-    update_description — do the same for the read side). Candidates below
-    are best-guesses based on typical mcp-server-datahub naming; the code
-    fails loud and lists what's actually available if none of them match,
-    so you can't silently ship a no-op search.
+    Confirmed working 2026-07-29 (verified live via test_write.py): tool
+    is 'search', query format {"query": "type:dataset"}. No more guessing.
     """
     async def _run():
         async with DataHubMCP() as dh:
-            candidates = ["search", "search_across_entities", "get_dataset", "list_datasets"]
-            found = [c for c in candidates if dh.has_tool(c)]
-            if not found:
-                return (
-                    f"[MCP CONFIG NEEDED] None of {candidates} exist on this server. "
-                    f"Actual tools: {sorted(dh._tool_names)}. Pick the right one and "
-                    f"wire it into investigator_hook() in mcp_hooks.py."
-                )
-            tool = found[0]
             try:
-                result = await dh.call_tool(tool, {"query": "*", "limit": 15})
+                result = await dh.call_tool("search", {"query": "type:dataset"})
             except Exception as e:
-                return f"[MCP CALL FAILED] {tool}: {e}"
-            return f"Live query via '{tool}':\n{result}"
+                return f"[MCP CALL FAILED] search: {e}"
+            return f"Live query via 'search':\n{result}"
 
     return run_async(_run())
 

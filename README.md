@@ -8,14 +8,14 @@ lineage), and writes corrected metadata back through `mcp-server-datahub`.
 Built for "Build with DataHub: The Agent Hackathon" — Agents That Do Real
 Work track.
 
-## Status (2026-07-28)
+## Status (2026-08-02)
 
 - [x] DataHub self-hosted stack running (Codespace, `datahub docker quickstart`)
 - [x] MCP mutation write path verified end-to-end (`update_description` →
       `EditableDatasetProperties`, confirmed via raw entity fetch)
 - [x] Agent orchestration skeleton ported and fixed (this repo)
-- [ ] Read-side MCP tool name confirmed (search/browse — run `list_tools()`
-      against the live server, see TODO in `src/mcp_hooks.py`)
+- [x] Read-side MCP tool confirmed (`search`, query format `{"query": "type:dataset"}`)
+- [ ] Full pipeline run verified live, end to end
 - [ ] SSE dashboard (deferred — proving the loop works beats a dashboard
       with nothing behind it, will revisit once agents run clean end-to-end)
 - [ ] Demo video / submission writeup
